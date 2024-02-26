@@ -2,7 +2,7 @@
 
 ## Install
 
-- Install Python 3.8
+- Install Python 3.11
 - pip install --user pipenv
 - python -m pipenv shell
 
