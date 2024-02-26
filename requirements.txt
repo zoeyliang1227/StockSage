@@ -1,7 +1,0 @@
-certifi==2023.7.22
-distlib==0.3.7
-filelock==3.12.2
-pipenv==2023.7.23
-platformdirs==3.10.0
-virtualenv==20.24.3
-virtualenv-clone==0.5.7
