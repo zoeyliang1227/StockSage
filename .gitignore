@@ -4,13 +4,6 @@ __pycache__/
 *$py.class
 
 # project specific
-/chromedriver.exe
-/chromedriver_win32.zip
-/*.csv
-/.pabotsuitenames
-/dash.config.yml
-/ctb.config.yml
-/dash/
-/newphoria/
-/translate.yml
-/config.yml
+*.exe
+*.xls
+*.log
