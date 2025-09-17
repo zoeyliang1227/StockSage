@@ -7,6 +7,7 @@ Use **slelenium** to crawl web data and use **pandas** to organize it into `exce
 
 - Install Python 3.11
 - pip install --user pipenv
+- python -m pipenv sync
 - python -m pipenv shell
 
 ## Run

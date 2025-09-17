@@ -40,10 +40,10 @@ def stock():
         driver = get_driver()
         # check_total_length(driver)
 
-        stock_total = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div[3]/div[2]/div/div/ul'))).find_elements(By.TAG_NAME, 'li')
+        stock_total = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.ID, 'main-1-ClassQuotesTable-Proxy'))).find_elements(By.TAG_NAME, 'li')
 
         # print(len(stock_total))
-        total = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div[1]/p'))).text[2:5]
+        total = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.ID, 'main-1-ClassQuotesTable-Proxy'))).text[2:5]
         for i in range(int(total)+1):   
         # for i in range(175):
         # for i in range(175, int(total)):
@@ -55,18 +55,18 @@ def stock():
                 time.sleep(2)
                 print(f'下拉 {length}')
             last = int(total) - i
-            stock = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/div[1]'))).text
-            code = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/div[2]'))).text
+            stock = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/div[1]'))).text
+            code = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/div[2]'))).text
             print(f'{i}, {stock}, {code}, 目前還剩{last}')
             stock_data[list(stock_data.keys())[0]].append(stock)                                
             stock_data[list(stock_data.keys())[1]].append(code) 
 
             #開啟新分頁
-            href = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/a'))).get_attribute('href')
+            href = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/a'))).get_attribute('href')
             driver.execute_script("window.open('');")
             driver.switch_to.window(driver.window_handles[1]) 
             driver.get(href)
-            # WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/a'))).click()
+            # WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH, '//*[@id="main-1-ClassQuotesTable-Proxy"]/div/div/div[3]/div[2]/div/div/ul/li[' + str(i+1) +']/div/div[1]/div[2]/div/a'))).click()
             # if check_ad(driver) == True:
             #     WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="subscription-banner"]/div/button'))).click()
 
@@ -108,6 +108,7 @@ def write_to_excel():
 def payment(driver):
     if check_payment(driver) == True:     
         WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main-1-QuoteTabs-Proxy"]/nav/div/div/div[5]/a'))).click()
+                                                                                    
 
     if len(list(stock_data.keys())) == 2:
         payment = WebDriverWait(driver, timeout).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="main-2-QuoteDividend-Proxy"]/div/section[2]/div[3]/div[1]/div'))).find_elements(By.TAG_NAME, 'div')
